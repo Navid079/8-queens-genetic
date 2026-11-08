@@ -1,0 +1,21 @@
+{
+  "name": "8-queen",
+  "license": "MIT",
+  "module": "logic.ts",
+  "scripts": {
+    "build": "bun run build.ts",
+    "dev": "bun run build && bun ./dist/index.html",
+    "solve": "bun run logic.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-plugin-tailwind": "^0.1.2",
+    "tailwindcss": "^4.3.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

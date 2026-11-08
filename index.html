@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f7f2" />
+    <meta name="description" content="Eight queens solver using a genetic algorithm." />
+    <title>Eight Queens Solver</title>
+    <link rel="stylesheet" href="./web/styles.css" />
+    <script type="module" src="./web/app.ts"></script>
+  </head>
+  <body class="min-h-screen bg-[#f6f7f2] text-[#25372c] antialiased">
+    <header class="border-b border-[#dce1d5]">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 sm:px-10">
+        <a href="./" class="flex items-center gap-3 font-semibold tracking-tight"><span class="text-3xl" aria-hidden="true">♛</span> EIGHT QUEENS</a>
+        <span class="rounded-full border border-[#d6dece] bg-[#edf1e7] px-3 py-1.5 text-[10px] font-semibold tracking-[.13em]">GENETIC ALGORITHM</span>
+      </div>
+    </header>
+    <main class="mx-auto max-w-7xl px-6 pb-12 pt-10 sm:px-10 lg:pt-14">
+      <div class="mb-7">
+        <h1 class="text-3xl font-semibold tracking-tight">Eight Queens Solver</h1>
+        <p class="mt-2 text-sm text-[#71806e]">Place eight queens so that no two attack each other.</p>
+      </div>
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(300px,1fr)] lg:gap-8">
+        <section class="rounded-2xl border border-[#dce1d5] bg-white/60 p-5 sm:p-7" aria-label="Chessboard visualization">
+          <div class="mb-5 flex items-center justify-between"><h2 class="text-sm font-semibold">Board <span class="ml-2 font-normal text-[#87917f]">/ 8 × 8</span></h2><span id="board-status" class="text-xs text-[#79856e]">Waiting for a solution</span></div>
+          <div class="board-wrap mx-auto max-w-[520px]"><div id="board" class="board" role="img" aria-label="Empty eight by eight chessboard"></div><div class="coordinates" aria-hidden="true"><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span></div></div>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-[#e6e9df] pt-4 text-xs text-[#79856e]"><span id="board-caption"></span><label class="flex shrink-0 cursor-pointer items-center gap-2"><input id="show-coordinates" type="checkbox" checked class="accent-[#526d42]" /> Coordinates</label></div>
+        </section>
+        <div class="flex flex-col gap-5">
+          <section class="rounded-2xl border border-[#dce1d5] bg-white/60 p-6 sm:p-7">
+            <div class="flex items-center justify-between"><h2 class="text-base font-semibold">Parameters</h2><span id="status-badge" class="status-badge">Ready</span></div>
+            <div class="my-6 grid grid-cols-2 gap-x-5 gap-y-5 text-sm">
+              <div><label for="population-size" class="parameter-label">Population size</label><input id="population-size" type="number" min="2" max="1000" step="1" value="10" required class="parameter-input" /><p class="mt-1 text-[10px] text-[#87917f]">2–1,000 individuals</p></div>
+              <div><label for="mutation-rate" class="parameter-label">Mutation rate (%)</label><input id="mutation-rate" type="number" min="0" max="100" step="0.1" value="1" required class="parameter-input" /><p class="mt-1 text-[10px] text-[#87917f]">0–100% per individual</p></div>
+              <div><p class="parameter-label">Crossover</p><p class="mt-1 font-medium">Order crossover</p></div><div><p class="parameter-label">Target fitness</p><p class="mt-1 font-medium">14 / 14</p></div>
+            </div>
+            <button id="solve" class="w-full cursor-pointer rounded-lg bg-[#314d35] px-5 py-3.5 text-sm font-medium text-white transition hover:bg-[#243d28] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#314d35]">Run</button>
+            <div class="mt-3 flex justify-end"><button id="reset" class="cursor-pointer text-xs text-[#6b7a63] underline decoration-[#c2cbb9] underline-offset-4">Reset</button></div>
+          </section>
+          <section class="rounded-2xl border border-[#dce1d5] bg-[#edf1e7] p-6" aria-label="Run results">
+            <div class="grid grid-cols-3 divide-x divide-[#d4ddca]"><div><p class="parameter-label">Generations</p><p id="generations" class="mt-2 font-display text-3xl">—</p></div><div class="pl-5"><p class="parameter-label">Fitness</p><p id="fitness" class="mt-2 font-display text-3xl">—</p></div><div class="pl-5"><p class="parameter-label">Time</p><p id="duration" class="mt-2 font-display text-3xl">—</p></div></div>
+            <p id="message" role="status" aria-live="polite" class="mt-5 border-t border-[#d4ddca] pt-4 text-xs leading-5 text-[#6b7a63]">Set the parameters and click Run.</p>
+          </section>
+          <section class="px-1"><div class="flex items-center justify-between"><h2 class="text-xs font-semibold uppercase tracking-[.12em] text-[#79856e]">Solution genome</h2><span class="text-[11px] text-[#87917f]">Column per row · zero-based</span></div><div id="genome" class="mt-3 grid grid-cols-8 gap-1.5" aria-label="No solution yet"></div></section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
